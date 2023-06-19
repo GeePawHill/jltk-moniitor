@@ -46,6 +46,8 @@ publishing {
     publications {
         create<MavenPublication>("mavenJava") {
             artifact(tasks["shadowJar"])
+            artifact(tasks["sourcesJar"])
+            artifact(tasks["javadocJar"])
             pom {
                 name.set("jltk-monitor")
                 description.set("The Java Learning ToolKit")
