@@ -1,9 +1,12 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
 plugins {
+    java
     `java-library`
     `maven-publish`
     signing
     id("io.github.gradle-nexus.publish-plugin") version "1.3.0"
-
+    id("com.github.johnrengelman.shadow") version "8.1.1"
     // Check for updates with ./gradlew dependencyUpdates
     id("com.github.ben-manes.versions") version "0.46.0"
 }
@@ -31,10 +34,18 @@ tasks.named<Test>("test") {
     useJUnitPlatform()
 }
 
+tasks.withType<ShadowJar>() {
+    minimize()
+    manifest {
+        attributes["Main-Class"] = "org.geepawhill.jltk.Main"
+    }
+    archiveClassifier.set("")
+}
+
 publishing {
     publications {
         create<MavenPublication>("mavenJava") {
-            from(components["java"])
+            artifact(tasks["shadowJar"])
             pom {
                 name.set("jltk-monitor")
                 description.set("The Java Learning ToolKit")
@@ -72,9 +83,9 @@ nexusPublishing {
     }
 }
 
-signing {
-    val signingKey: String? by project
-    val signingPassword: String? by project
-    useInMemoryPgpKeys(signingKey, signingPassword)
-    sign(publishing.publications["mavenJava"])
-}
+//signing {
+//    val signingKey: String? by project
+//    val signingPassword: String? by project
+//    useInMemoryPgpKeys(signingKey, signingPassword)
+//    sign(publishing.publications["mavenJava"])
+//}
