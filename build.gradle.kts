@@ -20,6 +20,7 @@ dependencies {
     implementation("org.eclipse.jgit:org.eclipse.jgit:6.5.0.202303070854-r")
     implementation("org.yaml:snakeyaml:2.0")
     implementation("org.slf4j:slf4j-nop:2.0.7")
+    implementation("args4j:args4j:2.33")
 }
 // Apply a specific Java toolchain to ease working on different environments.
 java {
@@ -34,7 +35,7 @@ tasks.named<Test>("test") {
     useJUnitPlatform()
 }
 
-tasks.withType<ShadowJar>() {
+tasks.withType<ShadowJar> {
     minimize()
     manifest {
         attributes["Main-Class"] = "org.geepawhill.jltk.Main"
@@ -50,7 +51,7 @@ publishing {
             artifact(tasks["javadocJar"])
             pom {
                 name.set("jltk-monitor")
-                description.set("The Java Learning ToolKit")
+                description.set("The Java Learning ToolKit -- Monitor Program")
                 url.set("https://github.com/GeePawHill/jltk-monitor")
                 licenses {
                     license {
