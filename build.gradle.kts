@@ -5,22 +5,36 @@ plugins {
     `java-library`
     `maven-publish`
     signing
+    application
     id("io.github.gradle-nexus.publish-plugin") version "1.3.0"
     id("com.github.johnrengelman.shadow") version "8.1.1"
     // Check for updates with ./gradlew dependencyUpdates
     id("com.github.ben-manes.versions") version "0.46.0"
+    id("org.openjfx.javafxplugin") version "0.0.14"
 }
 
 repositories {
     mavenCentral()
 }
 
+javafx {
+    version = "17"
+    modules = mutableListOf(
+        "javafx.controls",
+        "javafx.graphics",
+        "javafx.fxml",
+        "javafx.web"
+    )
+}
+
+application {
+    mainClass.set("org.geepawhill.jltk.Main")
+}
+
 dependencies {
     implementation("org.junit.jupiter:junit-jupiter:5.9.1")
-    implementation("org.eclipse.jgit:org.eclipse.jgit:6.5.0.202303070854-r")
-    implementation("org.yaml:snakeyaml:2.0")
-    implementation("org.slf4j:slf4j-nop:2.0.7")
     implementation("args4j:args4j:2.33")
+    implementation("org.geepawhill:jltk-monitor:latest.release")
 }
 // Apply a specific Java toolchain to ease working on different environments.
 java {

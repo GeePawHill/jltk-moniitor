@@ -1,10 +1,22 @@
 package org.geepawhill.jltk;
 
-import org.yaml.snakeyaml.*;
+import javafx.application.*;
+import javafx.scene.*;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
+import javafx.stage.*;
 
-public class Main {
+public class Main extends Application {
     public static void main(String... args) {
-        System.out.println("Hello. " + args[0]);
-        Yaml yaml = new Yaml();
+        launch(args);
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        StackPane pane = new StackPane();
+        Label label = new Label("Close me!");
+        pane.getChildren().add(label);
+        primaryStage.setScene(new Scene(pane));
+        primaryStage.show();
     }
 }
