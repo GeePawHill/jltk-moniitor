@@ -50,6 +50,7 @@ tasks.named<Test>("test") {
 }
 
 tasks.withType<ShadowJar> {
+    dependsOn("distTar", "distZip")
     minimize()
     manifest {
         attributes["Main-Class"] = "org.geepawhill.jltk.Main"
