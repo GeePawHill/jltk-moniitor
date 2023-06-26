@@ -10,21 +10,10 @@ plugins {
     id("com.github.johnrengelman.shadow") version "8.1.1"
     // Check for updates with ./gradlew dependencyUpdates
     id("com.github.ben-manes.versions") version "0.46.0"
-    id("org.openjfx.javafxplugin") version "0.0.14"
 }
 
 repositories {
     mavenCentral()
-}
-
-javafx {
-    version = "17"
-    modules = mutableListOf(
-        "javafx.controls",
-        "javafx.graphics",
-        "javafx.fxml",
-        "javafx.web"
-    )
 }
 
 application {
@@ -33,8 +22,8 @@ application {
 
 dependencies {
     implementation("org.junit.jupiter:junit-jupiter:5.9.1")
-    implementation("args4j:args4j:2.33")
-    implementation("org.geepawhill:jltk-monitor:latest.release")
+    implementation("org.geepawhill:jltk:latest.release")
+    implementation("commons-cli:commons-cli:1.5.0")
 }
 // Apply a specific Java toolchain to ease working on different environments.
 java {
