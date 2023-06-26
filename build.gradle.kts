@@ -49,11 +49,8 @@ tasks.named<Test>("test") {
     useJUnitPlatform()
 }
 
-tasks.named("distZip") {
-    dependsOn(shadow)
-}
-
 tasks.withType<ShadowJar> {
+    dependsOn("distTar", "distZip")
     minimize()
     manifest {
         attributes["Main-Class"] = "org.geepawhill.jltk.Main"
