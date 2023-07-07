@@ -24,6 +24,7 @@ dependencies {
     implementation("org.junit.jupiter:junit-jupiter:5.9.1")
     implementation("org.geepawhill:jltk:latest.release")
     implementation("commons-cli:commons-cli:1.5.0")
+    implementation("org.slf4j:slf4j-nop:2.0.7")
 }
 // Apply a specific Java toolchain to ease working on different environments.
 java {
